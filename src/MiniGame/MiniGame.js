@@ -43,10 +43,8 @@ export const MiniGame = (props) => {
 
       if (PassCnt > 2) {
         setPassModalOpen(true);
-        setFailModalOpen(false);
       } else {
         setFailModalOpen(true);
-        setPassModalOpen(false);
       }
     }
   };
@@ -54,11 +52,9 @@ export const MiniGame = (props) => {
   const handleOk_Cancel = () => {
     setPassModalOpen(false);
     setFailModalOpen(false);
-    setSelectTheoryData([]);
-    setAnswerChk({});
-    setCurrentQuestionIndex(0);
     setPassCnt(0);
     setFailCnt(0);
+    props.ModalClose();
   };
 
   useEffect(() => {
@@ -66,121 +62,121 @@ export const MiniGame = (props) => {
       {
         questionId: "S000001",
         questionImg: require("../images/quiz/X00008-101.jpg"),
-        question: "TEST 1",
+        question: "가방 안에 표창이 있다.",
         RealAnswer: "O",
       },
       {
         questionId: "S000002",
         questionImg: require("../images/quiz/X00015-101.jpg"),
-        question: "TEST 2",
-        RealAnswer: "X",
-      },
-      {
-        questionId: "S000003",
-        questionImg: require("../images/quiz/X03558-101.jpg"),
-        question: "TEST 3",
+        question: "가방안에 칼이 있다.",
         RealAnswer: "O",
       },
+      // {
+      //   questionId: "S000003",
+      //   questionImg: require("../images/quiz/X03558-101.jpg"),
+      //   question: "TEST 3",
+      //   RealAnswer: "O",
+      // },
       {
         questionId: "S000004",
         questionImg: require("../images/quiz/X03563-101.jpg"),
-        question: "TEST 4",
+        question: "가방안에 총이 있다.",
         RealAnswer: "X",
       },
       {
         questionId: "S000005",
         questionImg: require("../images/quiz/X03683-101.jpg"),
-        question: "TEST 5",
-        RealAnswer: "O",
+        question: "가방안에 면도칼이 없다.",
+        RealAnswer: "X",
       },
       {
         questionId: "S000006",
         questionImg: require("../images/quiz/X05508-101.jpg"),
-        question: "TEST 6",
-        RealAnswer: "X",
+        question: "가방안에 총이 있다.",
+        RealAnswer: "O",
       },
       {
         questionId: "S000007",
         questionImg: require("../images/quiz/X05509-101.jpg"),
-        question: "TEST 7",
-        RealAnswer: "O",
+        question: "가방안에 칼이 있다.",
+        RealAnswer: "X",
       },
       {
         questionId: "S000008",
         questionImg: require("../images/quiz/X05510-101.jpg"),
-        question: "TEST 8",
-        RealAnswer: "X",
+        question: "가방안에 총이 있다.",
+        RealAnswer: "O",
       },
       {
         questionId: "S000009",
         questionImg: require("../images/quiz/X05511-101.jpg"),
-        question: "TEST 9",
+        question: "가방안에 총이 있다.",
         RealAnswer: "O",
       },
       {
         questionId: "S000010",
         questionImg: require("../images/quiz/X05512-101.jpg"),
-        question: "TEST 10",
+        question: "가방안에 총이 없다.",
         RealAnswer: "X",
       },
       {
         questionId: "S000001",
         questionImg: require("../images/quiz/X05513-101.jpg"),
-        question: "TEST 11",
+        question: "가방안에 총이 있다.",
         RealAnswer: "O",
       },
       {
         questionId: "S000002",
         questionImg: require("../images/quiz/X05514-101.jpg"),
-        question: "TEST 12",
+        question: "가방안에 총이 없다.",
         RealAnswer: "X",
       },
       {
         questionId: "S000003",
         questionImg: require("../images/quiz/X05515-101.jpg"),
-        question: "TEST 13",
-        RealAnswer: "O",
+        question: "가방안에 칼이 있다.",
+        RealAnswer: "X",
       },
       {
         questionId: "S000004",
         questionImg: require("../images/quiz/X05530-101.jpg"),
-        question: "TEST 14",
+        question: "가방안에 총이 있다.",
         RealAnswer: "X",
       },
       {
         questionId: "S000005",
         questionImg: require("../images/quiz/X05531-101.jpg"),
-        question: "TEST 15",
-        RealAnswer: "O",
+        question: "가방안에 칼이 있다.",
+        RealAnswer: "X",
       },
       {
         questionId: "S000006",
         questionImg: require("../images/quiz/X05532-101.jpg"),
-        question: "TEST 16",
+        question: "가방안에 총이 있다.",
         RealAnswer: "X",
       },
       {
         questionId: "S000007",
         questionImg: require("../images/quiz/X05533-101.jpg"),
-        question: "TEST 17",
-        RealAnswer: "O",
+        question: "가방안에 칼이 있다.",
+        RealAnswer: "X",
       },
       {
         questionId: "S000008",
         questionImg: require("../images/quiz/X05552-101.jpg"),
-        question: "TEST 18",
+        question: "가방안에 총이 있다.",
         RealAnswer: "X",
       },
       {
         questionId: "S000009",
         questionImg: require("../images/quiz/X05561-101.jpg"),
-        question: "TEST 19",
-        RealAnswer: "O",
+        question: "가방안에 칼이 있다.",
+        RealAnswer: "X",
       },
       {
         questionId: "S000010",
         questionImg: require("../images/quiz/X05835-101.jpg"),
-        question: "TEST 20",
+        question: "가방안에 총이 있다.",
         RealAnswer: "X",
       },
     ];
@@ -246,13 +242,19 @@ export const MiniGame = (props) => {
                   >
                     <Row gutter={[16, 8]}>
                       <Col span={13}>
-                        <Image
-                          src={
-                            selectTheoryData[currentQuestionIndex]?.questionImg
-                          }
-                          alt=""
-                          style={{ height: "700px" }}
-                        />
+                        {selectTheoryData[currentQuestionIndex]?.questionImg ===
+                        undefined ? (
+                          ""
+                        ) : (
+                          <Image
+                            src={
+                              selectTheoryData[currentQuestionIndex]
+                                ?.questionImg
+                            }
+                            alt=""
+                            style={{ height: "700px" }}
+                          />
+                        )}
                       </Col>
                       <Col span={11}>
                         <Row gutter={[24, 28]}>
