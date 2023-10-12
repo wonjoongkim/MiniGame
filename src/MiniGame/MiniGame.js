@@ -213,7 +213,7 @@ export const MiniGame = (props) => {
                   id={`question${currentQuestionIndex + 1}`}
                   className="question_detail"
                 >
-                  <div className="theoryb_box theoryb_box_pd01 theorybr01">
+                  <div className="theoryb_box theoryb_box_pd01 theorybr02">
                     <div className="matter01_tit">
                       <div
                         className="mat01tit_left"
@@ -259,12 +259,14 @@ export const MiniGame = (props) => {
                       <Col span={11}>
                         <Row gutter={[24, 28]}>
                           <Col span={24}>
-                            <ul className="matter01_que">
+                            <ul className="matter02_que">
                               <li
                                 style={{
                                   justifyContent: "center",
                                   alignItems: "center",
-                                  padding: "13% 0px",
+                                  padding: "8% 0px",
+                                  // backgroundColor: "#1b9f1b",
+                                  cursor: "pointer",
                                 }}
                                 onClick={() =>
                                   toggleAnswer(
@@ -281,12 +283,14 @@ export const MiniGame = (props) => {
                             </ul>
                           </Col>
                           <Col span={24}>
-                            <ul className="matter01_que">
+                            <ul className="matter02_que">
                               <li
                                 style={{
                                   justifyContent: "center",
                                   alignItems: "center",
-                                  padding: "13% 0px",
+                                  padding: "8% 0px",
+                                  // backgroundColor: "#df793d",
+                                  cursor: "pointer",
                                 }}
                                 onClick={() =>
                                   toggleAnswer(

@@ -125,13 +125,13 @@ iframe {
   align-items: stretch;
 }
 
-/*.theoryb_left,
+/* .theoryb_left,
 .theoryb_right {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	flex-grow: 1;
-}*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-grow: 1;
+} */
 
 .theoryb_left {
   flex-basis: calc(40% - 23px);
@@ -598,16 +598,25 @@ iframe {
   position: relative;
   display: -ms-grid;
   display: grid;
+  /* 
   -ms-grid-columns: (1fr) [2];
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2, 1fr); */
+  width: 100%;
   height: 100%;
+  padding: 10px;
+  border: 2px solid #aac1ff;
+  /* 
+  
+  display: flex;
+  align-items: center;
+  padding: 15px;
+  background: #fff; */
 }
 
 .matter02_que:before {
   content: "";
   position: absolute;
-  left: calc(50% - 0.5px);
-  width: 1px;
+  left: calc(100% - 0.5px);
   height: 100%;
   background: #aac1ff;
 }
@@ -620,7 +629,7 @@ iframe {
 
 .matter02_que > li.on,
 .matter02_que > li:hover {
-  border: 2px solid #155eb6;
+  /* border: 2px solid #155eb6; */
   background: #f2f6fc;
 }
 
@@ -631,7 +640,8 @@ iframe {
 
 .matter02_que > li:nth-child(1).on .mo,
 .matter02_que > li:nth-child(1):hover .mo {
-  background: url("../images/theory/o_on.svg");
+  background: url("../images/theory/o_on.png");
+  background-size: 100%;
 }
 
 .matter02_que > li:nth-child(2).on,
@@ -639,33 +649,38 @@ iframe {
   border-radius: 0px 7px 7px 0px;
 }
 
-.matter02_que > li:nth-child(2).on .mx,
-.matter02_que > li:nth-child(2):hover .mx {
-  background: url("../images/theory/x_on.svg");
+.matter02_que > li:nth-child(1).on .mx,
+.matter02_que > li:nth-child(1):hover .mx {
+  background: url("../images/theory/x_on.png");
+  background-size: 100%;
 }
 
 .o_off {
-  width: 121px;
-  height: 121px;
-  background: url("../images/theory/o_off.svg");
+  width: 181px;
+  height: 181px;
+  background: url("../images/theory/o_on.png");
+  background-size: 100%;
 }
 
 .o_on {
-  width: 121px;
-  height: 121px;
-  background: url("../images/theory/o_on.svg");
+  width: 181px;
+  height: 181px;
+  background: url("../images/theory/o_on.png");
+  background-size: 100%;
 }
 
 .x_off {
-  width: 105px;
-  height: 105px;
-  background: url("../images/theory/x_off.svg");
+  width: 181px;
+  height: 181px;
+  background: url("../images/theory/x_on.png");
+  background-size: 100%;
 }
 
 .x_on {
-  width: 105px;
-  height: 105px;
-  background: url("../images/theory/x_on.svg");
+  width: 181px;
+  height: 181px;
+  background: url("../images/theory/x_on.png");
+  background-size: 100%;
 }
 
 /* ==================================================
