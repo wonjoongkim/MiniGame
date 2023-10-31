@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Row, Col, Image, Modal } from "antd";
 import { CloseCircleOutlined } from "@ant-design/icons";
 import Confetti from "react-confetti";
@@ -12,15 +12,31 @@ export const MiniGame = (props) => {
   const [selectTheoryData, setSelectTheoryData] = useState([]);
   const [answerChk, setAnswerChk] = useState({});
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
-  const [selectedQuestions, setSelectedQuestions] = useState("");
   const [PassCnt, setPassCnt] = useState(0);
   const [FailCnt, setFailCnt] = useState(0);
+  const [viewImg, setViewImg] = useState(true);
+  const [answerClicked_O, setAnswerClicked_O] = useState(false);
+  const [answerClicked_X, setAnswerClicked_X] = useState(false);
 
   const confettiOptions = {
     gravity: 0.15, // 1보다 큰 값으로 설정하면 컨페티가 빠르게 떨어집니다.
   };
 
   const toggleAnswer = (questionId, answer, realanswer) => {
+    if (answer === "O") {
+      setAnswerClicked_O(true);
+
+      setTimeout(() => {
+        setAnswerClicked_O(false);
+      }, 400);
+    } else {
+      setAnswerClicked_X(true);
+
+      setTimeout(() => {
+        setAnswerClicked_X(false);
+      }, 400);
+    }
+
     if (answer === realanswer) {
       setPassCnt((prev) => prev + 1);
     } else {
@@ -40,6 +56,7 @@ export const MiniGame = (props) => {
       setSelectTheoryData([]);
       setAnswerChk({});
       setCurrentQuestionIndex(0);
+      setViewImg(false);
 
       if (PassCnt > 2) {
         setPassModalOpen(true);
@@ -52,6 +69,7 @@ export const MiniGame = (props) => {
   const handleOk_Cancel = () => {
     setPassModalOpen(false);
     setFailModalOpen(false);
+    setViewImg(true);
     setPassCnt(0);
     setFailCnt(0);
     props.ModalClose();
@@ -184,7 +202,7 @@ export const MiniGame = (props) => {
     const shuffledQuestions = shuffleArray(data);
     const selectedQuestions = shuffledQuestions.slice(0, 5);
     setSelectTheoryData(selectedQuestions);
-  }, [props.datetime]);
+  }, [answerChk]);
 
   // Shuffle function
   const shuffleArray = (array) => {
@@ -199,11 +217,15 @@ export const MiniGame = (props) => {
     return shuffledArray;
   };
 
+  const handleMouseEvent = (falg) => {
+    props.cursorEvent(falg);
+  };
+
   return (
     <>
       <div
         className="theory_bg"
-        style={{ borderRadius: "20px", paddingBottom: "30px" }}
+        style={{ borderRadius: "20px", paddingBottom: "30px", cursor: "none" }}
       >
         <div className="theory_con">
           <div className="thetop">
@@ -215,10 +237,7 @@ export const MiniGame = (props) => {
                 >
                   <div className="theoryb_box theoryb_box_pd01 theorybr02">
                     <div className="matter01_tit">
-                      <div
-                        className="mat01tit_left"
-                        style={{ fontSize: "28px" }}
-                      >
+                      <div className="mat01tit_left">
                         문제번호
                         <span>
                           {currentQuestionIndex + 1 < 9
@@ -231,7 +250,9 @@ export const MiniGame = (props) => {
                         style={{ fontSize: "30px" }}
                       >
                         <p className="mat01tit">
-                          {selectTheoryData[currentQuestionIndex]?.question}
+                          {viewImg === false
+                            ? ""
+                            : selectTheoryData[currentQuestionIndex]?.question}
                         </p>
                       </div>
                     </div>
@@ -245,13 +266,15 @@ export const MiniGame = (props) => {
                         {selectTheoryData[currentQuestionIndex]?.questionImg ===
                         undefined ? (
                           ""
+                        ) : viewImg === false ? (
+                          ""
                         ) : (
                           <Image
                             src={
                               selectTheoryData[currentQuestionIndex]
                                 ?.questionImg
                             }
-                            alt=""
+                            alt="이미지 확대"
                             style={{ height: "700px" }}
                           />
                         )}
@@ -262,12 +285,14 @@ export const MiniGame = (props) => {
                             <ul className="matter02_que">
                               <li
                                 style={{
+                                  zIndex: 99999,
                                   justifyContent: "center",
                                   alignItems: "center",
                                   padding: "8% 0px",
-                                  // backgroundColor: "#1b9f1b",
-                                  cursor: "pointer",
+                                  cursor: "none",
                                 }}
+                                onMouseOver={() => handleMouseEvent(true)}
+                                onMouseOut={() => handleMouseEvent(false)}
                                 onClick={() =>
                                   toggleAnswer(
                                     selectTheoryData[currentQuestionIndex]
@@ -278,7 +303,13 @@ export const MiniGame = (props) => {
                                   )
                                 }
                               >
-                                <span className="mo o_off"></span>
+                                <span
+                                  className={
+                                    answerClicked_O
+                                      ? "mo o_off clicked"
+                                      : "mo o_off"
+                                  }
+                                ></span>
                               </li>
                             </ul>
                           </Col>
@@ -286,11 +317,12 @@ export const MiniGame = (props) => {
                             <ul className="matter02_que">
                               <li
                                 style={{
+                                  zIndex: 99999,
                                   justifyContent: "center",
                                   alignItems: "center",
                                   padding: "8% 0px",
                                   // backgroundColor: "#df793d",
-                                  cursor: "pointer",
+                                  cursor: "none",
                                 }}
                                 onClick={() =>
                                   toggleAnswer(
@@ -301,8 +333,16 @@ export const MiniGame = (props) => {
                                       ?.RealAnswer
                                   )
                                 }
+                                onMouseOver={() => handleMouseEvent(true)}
+                                onMouseOut={() => handleMouseEvent(false)}
                               >
-                                <span className="mx x_off"></span>
+                                <span
+                                  className={
+                                    answerClicked_X
+                                      ? "mx x_off clicked"
+                                      : "mx x_off"
+                                  }
+                                ></span>
                               </li>
                             </ul>
                           </Col>
@@ -315,130 +355,148 @@ export const MiniGame = (props) => {
             </div>
           </div>
         </div>
+        {/* Pass 모달 창 Start */}
+        {PassModalOpen && (
+          <>
+            <Confetti {...confettiOptions} />
+
+            <Modal
+              maskClosable={false}
+              open={PassModalOpen}
+              onOk={handleOk_Cancel}
+              onCancel={handleOk_Cancel}
+              width="600px"
+              style={{
+                height: "100%",
+                top: 230,
+                zIndex: 999,
+              }}
+              footer={[]}
+              closeIcon={
+                <CloseCircleOutlined
+                  style={{
+                    fontSize: "70px",
+                    marginRight: "50px",
+                    cursor: "none",
+                  }}
+                  onMouseOver={() => handleMouseEvent(true)}
+                  onMouseOut={() => handleMouseEvent(false)}
+                />
+              }
+            >
+              <div
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "center",
+                }}
+              >
+                <br />
+                <br />
+                <br />
+                <br />
+                <h2 style={{ fontSize: "36px" }}>
+                  문제풀이를 완료 하였습니다.
+                </h2>
+                <br />
+                <br />
+                <h2 style={{ fontSize: "36px", color: "#87d068" }}>
+                  맞은 문제 {PassCnt}문항
+                </h2>
+                <br />
+                <h2 style={{ fontSize: "36px", color: "#faad14" }}>
+                  틀린 문제 {FailCnt}문항
+                </h2>
+                <br />
+                <br />
+                <h2 style={{ fontSize: "36px" }}>
+                  축하합니다.
+                  <br />
+                  <br />
+                  <span style={{ fontSize: "45px", color: "#87d068" }}>
+                    합격
+                  </span>
+                  하셨습니다.
+                </h2>
+                <br />
+                <br />
+              </div>
+            </Modal>
+          </>
+        )}
+        {/* Pass 모달 창 End */}
+
+        {/* Fail 모달 창 Start */}
+        {FailModalOpen && (
+          <>
+            {/* <Confetti /> */}
+            <Modal
+              maskClosable={false}
+              open={FailModalOpen}
+              onOk={handleOk_Cancel}
+              onCancel={handleOk_Cancel}
+              width={620}
+              centered={true}
+              style={{
+                height: "100%",
+                top: 230,
+                zIndex: 999,
+              }}
+              footer={[]}
+              closeIcon={
+                <CloseCircleOutlined
+                  style={{
+                    fontSize: "70px",
+                    marginRight: "50px",
+                    cursor: "none",
+                  }}
+                  onMouseOver={() => handleMouseEvent(true)}
+                  onMouseOut={() => handleMouseEvent(false)}
+                />
+              }
+            >
+              <div
+                style={{
+                  justifyContent: "center",
+                  alignItems: "center",
+                  textAlign: "center",
+                }}
+              >
+                <br />
+                <br />
+                <br />
+                <br />
+                <h2 style={{ fontSize: "36px" }}>
+                  문제풀이를 완료 하였습니다.
+                </h2>
+                <br />
+                <br />
+                <h2 style={{ fontSize: "36px", color: "#87d068" }}>
+                  맞은 문제 {PassCnt}문항
+                </h2>
+                <br />
+                <h2 style={{ fontSize: "36px", color: "#faad14" }}>
+                  틀린 문제 {FailCnt}문항
+                </h2>
+                <br />
+                <br />
+                <h2 style={{ fontSize: "36px" }}>
+                  아쉽게도~
+                  <br />
+                  <br />
+                  <span style={{ fontSize: "45px", color: "#faad14" }}>
+                    불합격
+                  </span>
+                  하였습니다.
+                </h2>
+                <br />
+                <br />
+              </div>
+            </Modal>
+          </>
+        )}
+        {/* Fail 모달 창 End */}
       </div>
-      {/* Pass 모달 창 Start */}
-      {PassModalOpen && (
-        <>
-          <Confetti {...confettiOptions} />
-
-          <Modal
-            maskClosable={false}
-            open={PassModalOpen}
-            onOk={handleOk_Cancel}
-            onCancel={handleOk_Cancel}
-            width="600px"
-            style={{
-              height: "100%",
-              top: 230,
-              zIndex: 999,
-            }}
-            footer={[]}
-            closeIcon={
-              <CloseCircleOutlined
-                style={{ fontSize: "70px", marginRight: "50px" }}
-              />
-            }
-          >
-            <div
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center",
-              }}
-            >
-              <br />
-              <br />
-              <br />
-              <br />
-              <h2 style={{ fontSize: "36px" }}>문제풀이를 완료 하였습니다.</h2>
-              <br />
-              <br />
-              <h2 style={{ fontSize: "36px", color: "#87d068" }}>
-                맞은 문제 {PassCnt}문항
-              </h2>
-              <br />
-              <h2 style={{ fontSize: "36px", color: "#faad14" }}>
-                틀린 문제 {FailCnt}문항
-              </h2>
-              <br />
-              <br />
-              <h2 style={{ fontSize: "36px" }}>
-                축하합니다.
-                <br />
-                <br />
-                <span style={{ fontSize: "45px", color: "#87d068" }}>합격</span>
-                하셨습니다.
-              </h2>
-              <br />
-              <br />
-            </div>
-          </Modal>
-        </>
-      )}
-      {/* Pass 모달 창 End */}
-
-      {/* Fail 모달 창 Start */}
-      {FailModalOpen && (
-        <>
-          {/* <Confetti /> */}
-          <Modal
-            maskClosable={false}
-            open={FailModalOpen}
-            onOk={handleOk_Cancel}
-            onCancel={handleOk_Cancel}
-            width={620}
-            centered={true}
-            style={{
-              height: "100%",
-              top: 230,
-              zIndex: 999,
-            }}
-            footer={[]}
-            closeIcon={
-              <CloseCircleOutlined
-                style={{ fontSize: "70px", marginRight: "50px" }}
-              />
-            }
-          >
-            <div
-              style={{
-                justifyContent: "center",
-                alignItems: "center",
-                textAlign: "center",
-              }}
-            >
-              <br />
-              <br />
-              <br />
-              <br />
-              <h2 style={{ fontSize: "36px" }}>문제풀이를 완료 하였습니다.</h2>
-              <br />
-              <br />
-              <h2 style={{ fontSize: "36px", color: "#87d068" }}>
-                맞은 문제 {PassCnt}문항
-              </h2>
-              <br />
-              <h2 style={{ fontSize: "36px", color: "#faad14" }}>
-                틀린 문제 {FailCnt}문항
-              </h2>
-              <br />
-              <br />
-              <h2 style={{ fontSize: "36px" }}>
-                아쉽게도~
-                <br />
-                <br />
-                <span style={{ fontSize: "45px", color: "#faad14" }}>
-                  불합격
-                </span>
-                하였습니다.
-              </h2>
-              <br />
-              <br />
-            </div>
-          </Modal>
-        </>
-      )}
-      {/* Fail 모달 창 End */}
     </>
   );
 };
