@@ -56,6 +56,7 @@ export const Front = () => {
   };
 
   const handleCancel = () => {
+    setIsHovering(false);
     setModalOpen(false);
   };
   // 메뉴 Modal 이벤트처리 End
@@ -86,7 +87,7 @@ export const Front = () => {
         ></div>
         <div id="wrap" className="mbg mbg_none">
           <div className="tgnb">
-            <Typography variant="h1" style={{ fontSize: "48px" }}>
+            <Typography variant="h1" style={{ fontSize: "58px" }}>
               X-ray Security <span>Training</span>
             </Typography>
           </div>
@@ -98,11 +99,25 @@ export const Front = () => {
                     <div className="minfo_top">
                       <p
                         style={{
-                          padding: "40px 0",
-                          fontSize: "45px",
+                          fontSize: "30px",
                         }}
                       >
-                        X-ray MiniGame
+                        X-Ray MiniGame
+                        <br />
+                        <div
+                          style={{
+                            padding: "120px 0 20px 0",
+                            fontSize: "45px",
+                            color: "#41be4f",
+                          }}
+                        >
+                          당신은 미래 항공 보안요원!
+                        </div>
+                        <div
+                          style={{ padding: "20px 0 0 0", fontSize: "29px" }}
+                        >
+                          실제 상황을 MiniGame으로 체험하세요.
+                        </div>
                       </p>
                     </div>
                     <button
@@ -114,7 +129,7 @@ export const Front = () => {
                       style={{
                         cursor: "none",
                         padding: "60px 0",
-                        fontSize: "45px",
+                        fontSize: "55px",
                         borderRadius: "25px",
                       }}
                     >

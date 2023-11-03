@@ -80,13 +80,13 @@ export const MiniGame = (props) => {
       {
         questionId: "S000001",
         questionImg: require("../images/quiz/X00008-101.jpg"),
-        question: "가방 안에 표창이 있다.",
+        question: "이 엑스레이 사진에 표창이 확인됩니까?",
         RealAnswer: "O",
       },
       {
         questionId: "S000002",
         questionImg: require("../images/quiz/X00015-101.jpg"),
-        question: "가방안에 칼이 있다.",
+        question: "이 엑스레이 사진에 날카로운 물체가 있습니까?",
         RealAnswer: "O",
       },
       // {
@@ -98,104 +98,104 @@ export const MiniGame = (props) => {
       {
         questionId: "S000004",
         questionImg: require("../images/quiz/X03563-101.jpg"),
-        question: "가방안에 총이 있다.",
+        question: "이 엑스레이 사진에 총기가 확인됩니까?",
         RealAnswer: "X",
       },
       {
         questionId: "S000005",
         questionImg: require("../images/quiz/X03683-101.jpg"),
-        question: "가방안에 면도칼이 없다.",
+        question: "이 엑스레이 사진에 총기가 확인됩니까?.",
         RealAnswer: "X",
       },
       {
         questionId: "S000006",
         questionImg: require("../images/quiz/X05508-101.jpg"),
-        question: "가방안에 총이 있다.",
+        question: "이 엑스레이 사진에 총기가 확인됩니까?",
         RealAnswer: "O",
       },
       {
         questionId: "S000007",
         questionImg: require("../images/quiz/X05509-101.jpg"),
-        question: "가방안에 칼이 있다.",
-        RealAnswer: "X",
+        question: "이 엑스레이 사진에 위험물질이 확인됩니끼?",
+        RealAnswer: "O",
       },
       {
         questionId: "S000008",
         questionImg: require("../images/quiz/X05510-101.jpg"),
-        question: "가방안에 총이 있다.",
+        question: "이 엑스레이 사진에 총기류가 있습니까?",
         RealAnswer: "O",
       },
       {
         questionId: "S000009",
         questionImg: require("../images/quiz/X05511-101.jpg"),
-        question: "가방안에 총이 있다.",
+        question: "이 엑스레이 사진에 무기가 확인됩니까?",
         RealAnswer: "O",
       },
       {
         questionId: "S000010",
         questionImg: require("../images/quiz/X05512-101.jpg"),
-        question: "가방안에 총이 없다.",
-        RealAnswer: "X",
-      },
-      {
-        questionId: "S000001",
-        questionImg: require("../images/quiz/X05513-101.jpg"),
-        question: "가방안에 총이 있다.",
+        question: "이 엑스레이 사진에 총기류가 있습니까?",
         RealAnswer: "O",
       },
       {
-        questionId: "S000002",
+        questionId: "S000011",
+        questionImg: require("../images/quiz/X05513-101.jpg"),
+        question: "이 엑스레이 사진에 금지물품이 확인됩니까?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000012",
         questionImg: require("../images/quiz/X05514-101.jpg"),
-        question: "가방안에 총이 없다.",
+        question: "이 엑스레이 사진에 금지물품이 확인됩니까?",
         RealAnswer: "X",
       },
       {
-        questionId: "S000003",
+        questionId: "S000013",
         questionImg: require("../images/quiz/X05515-101.jpg"),
-        question: "가방안에 칼이 있다.",
+        question: "이 엑스레이 사진에 위험물이 확인됩니까?",
         RealAnswer: "X",
       },
       {
-        questionId: "S000004",
+        questionId: "S000014",
         questionImg: require("../images/quiz/X05530-101.jpg"),
-        question: "가방안에 총이 있다.",
-        RealAnswer: "X",
+        question: "이 엑스레이 사진에 날카로운 물체가 획인됩니까?",
+        RealAnswer: "O",
       },
       {
-        questionId: "S000005",
+        questionId: "S000015",
         questionImg: require("../images/quiz/X05531-101.jpg"),
-        question: "가방안에 칼이 있다.",
+        question: "이 엑스레이 사진에 동물이 확인됩니까?",
         RealAnswer: "X",
       },
       {
-        questionId: "S000006",
+        questionId: "S000016",
         questionImg: require("../images/quiz/X05532-101.jpg"),
-        question: "가방안에 총이 있다.",
+        question: "이 엑스레이 사진에 동물이 확인됩니까?",
         RealAnswer: "X",
       },
       {
-        questionId: "S000007",
+        questionId: "S000017",
         questionImg: require("../images/quiz/X05533-101.jpg"),
-        question: "가방안에 칼이 있다.",
+        question: "이 엑스레이 사진에 수류탄이 확인됩니까?.",
         RealAnswer: "X",
       },
       {
-        questionId: "S000008",
+        questionId: "S000018",
         questionImg: require("../images/quiz/X05552-101.jpg"),
-        question: "가방안에 총이 있다.",
+        question: "이 엑스레이 사진에 총기가 확인됩니까?",
         RealAnswer: "X",
       },
       {
-        questionId: "S000009",
+        questionId: "S000019",
         questionImg: require("../images/quiz/X05561-101.jpg"),
-        question: "가방안에 칼이 있다.",
+        question: "이 엑스레이 사진에 위험물이 있나요?",
         RealAnswer: "X",
       },
       {
-        questionId: "S000010",
+        questionId: "S000020",
         questionImg: require("../images/quiz/X05835-101.jpg"),
-        question: "가방안에 총이 있다.",
-        RealAnswer: "X",
+        question: "이 엑스레이 사진에 금지물품이 확인됩니까?",
+        RealAnswer: "O",
       },
     ];
 
@@ -244,6 +244,7 @@ export const MiniGame = (props) => {
                             ? `0${currentQuestionIndex + 1}`
                             : currentQuestionIndex + 1}
                         </span>
+                        {/* {selectTheoryData[currentQuestionIndex]?.questionId} */}
                       </div>
                       <div
                         className="mat01tit_right"
