@@ -441,7 +441,7 @@ export const MiniGame = (props) => {
       {
         questionId: "S000060",
         questionImg: require("../images/quiz/X00133-101.jpg"),
-        question: "이 엑스레이 사진에 볼펜이 있나요?",
+        question: "이 엑스레이 사진에 볼펜이 확인되나요?",
         RealAnswer: "X",
       },
     ];
