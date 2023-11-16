@@ -6,6 +6,9 @@ import "../css/theory.css";
 
 export const MiniGame = (props) => {
   const { confirm } = Modal;
+
+  const [visible, setVisible] = useState(false);
+
   const [PassModalOpen, setPassModalOpen] = useState(false); // 합격 Modal창
   const [FailModalOpen, setFailModalOpen] = useState(false); // 불합격 Modal창
 
@@ -89,12 +92,12 @@ export const MiniGame = (props) => {
         question: "이 엑스레이 사진에 날카로운 물체가 있습니까?",
         RealAnswer: "O",
       },
-      // {
-      //   questionId: "S000003",
-      //   questionImg: require("../images/quiz/X03558-101.jpg"),
-      //   question: "TEST 3",
-      //   RealAnswer: "O",
-      // },
+      {
+        questionId: "S000003",
+        questionImg: require("../images/quiz/X03558-101.jpg"),
+        question: "이 엑스레이 사진에 물품이 의심되어 가방을 열어봐야 할까요? ",
+        RealAnswer: "X",
+      },
       {
         questionId: "S000004",
         questionImg: require("../images/quiz/X03563-101.jpg"),
@@ -197,6 +200,250 @@ export const MiniGame = (props) => {
         question: "이 엑스레이 사진에 금지물품이 확인됩니까?",
         RealAnswer: "O",
       },
+
+      // 2023-11-08 추가
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X00100-101.jpg"),
+        question: "이 엑스레이 사진에 수갑이 확인됩니까?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X00833-101.jpg"),
+        question: "이 엑스레이 사진에 폭발물이 확인됩니까?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X00847-101.jpg"),
+        question: "이 엑스레이 사진에 공구류의 물품이 있나요?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X00858-101.jpg"),
+        question: "이 엑스레이 사진에 위험한 물품이 있나요?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X00863-101.jpg"),
+        question: "이 엑스레이 사진은 안전하다 확인됩니까?",
+        RealAnswer: "X",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X00925-101.jpg"),
+        question: "이 엑스레이 사진에 폭발물이 확인됩니까?",
+        RealAnswer: "X",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X00977-101.jpg"),
+        question:
+          "이 엑스레이 사진에 인화성물질(가스성 스프레이)이 확인됩니까?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X01020-101.jpg"),
+        question: "이 엑스레이 사진에 장난감 총이 확인됩니까?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X01047-101.jpg"),
+        question: "이 엑스레이 사진에 폭발물로 보이는 물품이 있나요?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X01293-101.jpg"),
+        question: "이 엑스레이 사진에 날카로운 물품이 있나요?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X01314-101.jpg"),
+        question: "이 엑스레이 사진에 주류(와인) 물품이 있나요?",
+        RealAnswer: "X",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X01316-101.jpg"),
+        question: "이 엑스레이 사진은 안전한 가방으로 확인됩니까?",
+        RealAnswer: "X",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X01332-101.jpg"),
+        question: "이 엑스레이 사진에 장난감총이 확인됩니까?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X01405-101.jpg"),
+        question: "이 엑스레이 사진에 위험한 물품이 2가지 이상으로 확인됩니까?",
+        RealAnswer: "X",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X01544-101.jpg"),
+        question: "이 엑스레이 사진의 물품이 안전하다고 확인됩니까?",
+        RealAnswer: "X",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X01589-101.jpg"),
+        question: "이 엑스레이 사진에 칼이 있나요?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X01748-101.jpg"),
+        question: "이 엑스레이 사진에 운동기구가 들어있나요?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X01777-101.jpg"),
+        question: "이 엑스레이 사진에 폭발물로 의심가는 물품이 있나요?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X01926-101.jpg"),
+        question:
+          "이 엑스레이 사진에서 2가지 이상 의심스러운 위험한 물품이 있는지 확인됩니까?",
+        RealAnswer: "X",
+      },
+      {
+        questionId: "S000020",
+        questionImg: require("../images/quiz/X01967-101.jpg"),
+        question: "이 엑스레이 사진에서 표창이 확인됩니까?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000021",
+        questionImg: require("../images/quiz/X00100-101.jpg"),
+        question: "이 엑스레이 사진에 총기가 있나요?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000022",
+        questionImg: require("../images/quiz/X00103-101.jpg"),
+        question: "이 엑스레이 사진에 금지물품이 있나요?",
+        RealAnswer: "X",
+      },
+      {
+        questionId: "S000023",
+        questionImg: require("../images/quiz/X00104-101.jpg"),
+        question: "이 엑스레이 사진에 전기/전자제품이 있나요?",
+        RealAnswer: "X",
+      },
+      {
+        questionId: "S000024",
+        questionImg: require("../images/quiz/X00105-101.jpg"),
+        question: "이 엑스레이 사진에 폭발물이 확인되나요?",
+        RealAnswer: "X",
+      },
+      {
+        questionId: "S000025",
+        questionImg: require("../images/quiz/X00106-101.jpg"),
+        question: "이 엑스레이 사진에 금속제품이 있나요?",
+        RealAnswer: "O",
+      },
+      // {
+      //   questionId: "S000026",
+      //   questionImg: require("../images/quiz/X00108-101.jpg"),
+      //   question: "이 엑스레이 사진에 동물이 있나요?",
+      //   RealAnswer: "X",
+      // },
+      // {
+      //   questionId: "S000027",
+      //   questionImg: require("../images/quiz/X00109-101.jpg"),
+      //   question: "이 엑스레이 사진에 우산이 있나요?",
+      //   RealAnswer: "O",
+      // },
+      // {
+      //   questionId: "S000028",
+      //   questionImg: require("../images/quiz/X00116-101.jpg"),
+      //   question: "이 엑스레이 사진에 폭발물로 의심되는 물품이 있나요?",
+      //   RealAnswer: "O",
+      // },
+      // {
+      //   questionId: "S000029",
+      //   questionImg: require("../images/quiz/X00117-101.jpg"),
+      //   question: "이 엑스레이 사진에 의심스러운 물품이 있나요?",
+      //   RealAnswer: "O",
+      // },
+      // {
+      //   questionId: "S000030",
+      //   questionImg: require("../images/quiz/X00119-101.jpg"),
+      //   question: "이 엑스레이 사진에 날카로운 칼이 있나요?",
+      //   RealAnswer: "X",
+      // },
+      // {
+      //   questionId: "S000031",
+      //   questionImg: require("../images/quiz/X00120-101.jpg"),
+      //   question: "이 엑스레이 사진에 위장한 무기가 있나요?",
+      //   RealAnswer: "X",
+      // },
+      {
+        questionId: "S000032",
+        questionImg: require("../images/quiz/X00121-101.jpg"),
+        question: "이 엑스레이 사진에 후레쉬가 있나요?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000033",
+        questionImg: require("../images/quiz/X00122-101.jpg"),
+        question: "이 엑스레이 사진에 망원경으로 확인됩니까?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000034",
+        questionImg: require("../images/quiz/X00123-101.jpg"),
+        question: "이 엑스레이 사진에 전자담배가 있나요?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000035",
+        questionImg: require("../images/quiz/X00124-101.jpg"),
+        question: "이 엑스레이 사진에 통조림 캔이 있나요?",
+        RealAnswer: "O",
+      },
+      // {
+      //   questionId: "S000036",
+      //   questionImg: require("../images/quiz/X00127-101.jpg"),
+      //   question: "이 엑스레이 사진에 공구용품이 있나요?",
+      //   RealAnswer: "O",
+      // },
+      // {
+      //   questionId: "S000037",
+      //   questionImg: require("../images/quiz/X00128-101.jpg"),
+      //   question: "이 엑스레이 사진에 신발이 두 켤레가 확인되나요?",
+      //   RealAnswer: "X",
+      // },
+      // {
+      //   questionId: "S000038",
+      //   questionImg: require("../images/quiz/X00131-101.jpg"),
+      //   question: "이 엑스레이 사진에 노트북이 있나요?",
+      //   RealAnswer: "X",
+      // },
+      {
+        questionId: "S000039",
+        questionImg: require("../images/quiz/X00132-101.jpg"),
+        question: "이 엑스레이 사진에 작은칼이 있나요?",
+        RealAnswer: "O",
+      },
+      {
+        questionId: "S000040",
+        questionImg: require("../images/quiz/X00133-101.jpg"),
+        question: "이 엑스레이 사진에 볼펜이 있나요?",
+        RealAnswer: "X",
+      },
     ];
 
     const shuffledQuestions = shuffleArray(data);
@@ -275,6 +522,16 @@ export const MiniGame = (props) => {
                               selectTheoryData[currentQuestionIndex]
                                 ?.questionImg
                             }
+                            preview={{
+                              visible,
+                              scaleStep: "0.1",
+                              src: selectTheoryData[currentQuestionIndex]
+                                ?.questionImg,
+                              onVisibleChange: (value) => {
+                                setVisible(value);
+                              },
+                              width: `${window.innerWidth * 0.5}px`,
+                            }}
                             alt="이미지 확대"
                             style={{ height: "700px" }}
                           />
